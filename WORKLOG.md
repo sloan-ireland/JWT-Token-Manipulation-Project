@@ -1,22 +1,18 @@
 # Work Log
 
-## GROUP MEMBER 1
+## Jacob Kirmayer
 
-### date x
+### 05-17-23
 
-info
+Pushed some old code snippets and did some cleaning/rewrites on them.
 
-### date y
+### 05-18-23
 
-info
+Collected and expanded on utils.
 
 
-## GROUP MEMBER 2
+## Sloan Ireland
 
-### date x
+### 05-17-23
 
-info
-
-### date y
-
-info
+Researched JWT exploits.
