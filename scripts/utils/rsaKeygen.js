@@ -1,4 +1,5 @@
 const crypto = require('crypto')
+const {writeFileSync} = require("fs");
 
 function keygen() {
   const keyObjects = crypto.generateKeyPairSync('rsa',{modulusLength: 4096})
@@ -8,4 +9,9 @@ function keygen() {
     public:keyObjects.publicKey.export({format: "pem", type: "pkcs1"})
   }
 }
+
+writeFileSync('../private.pem',keygen().private)
+writeFileSync('../public.pem',keygen().public)
+
+module.exports = keygen
 
