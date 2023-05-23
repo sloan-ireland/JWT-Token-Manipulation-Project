@@ -12,7 +12,7 @@ Collected and expanded on utils.
 
 ### 05-23-23
 
-Modified CTF login page written by Sloan and modified CTF server code.
+Modified CTF login page written by Sloan and wrote CTF server code.
 
 
 ## Sloan Ireland
