@@ -10,6 +10,10 @@ Pushed some old code snippets and did some cleaning/rewrites on them.
 
 Collected and expanded on utils.
 
+### 05-23-23
+
+Modified CTF login page written by Sloan and modified CTF server code.
+
 
 ## Sloan Ireland
 
