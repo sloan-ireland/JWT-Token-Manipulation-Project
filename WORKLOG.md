@@ -13,6 +13,10 @@ Collected and expanded on utils.
 
 ## Sloan Ireland
 
-### 05-17-23
+### 05-17-23 and 05-18/19-23 (Was absent for AP Exam and Personal reason)
 
 Researched JWT exploits.
+
+### 05-22-23
+
+Created DigitalOcean Droplet. Spent quite a bit of time getting it configured to wanted specifications and setting up the ngiunx webserver. Created the HTML and php for the login pages to base off the exploit. PHP page is currently broken. 
