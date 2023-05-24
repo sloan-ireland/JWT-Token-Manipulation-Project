@@ -54,7 +54,6 @@
     <div class="get-flag-form">
         <h2>Get Flag</h2>
         <form id="get-flag-form">
-            <input type="text" id="token" name="token" placeholder="Token" required>
             <input type="submit" value="Get Flag">
         </form>
         <div class="flag-result" id="flag-result"></div>
@@ -67,17 +66,17 @@
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const token = document.getElementById('token').value;
+            const token = sessionStorage.getItem('token');
             const response = await fetch('http://localhost:8080/getFlag', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ token })
+                body: JSON.stringify({ token:token })
             });
 
             const data = await response.json();
-            flagResult.textContent = data;
+            flagResult.textContent = data.toString();
         });
     </script>
 </body>
