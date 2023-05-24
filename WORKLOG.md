@@ -14,6 +14,11 @@ Collected and expanded on utils.
 
 Modified CTF login page written by Sloan and wrote CTF server code.
 
+### 05-24-23
+
+Configured and tested internet-facing CTF.
+Began work on CLI forgery interface.
+
 
 ## Sloan Ireland
 
