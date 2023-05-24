@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Get Flag</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -9,7 +9,7 @@
             text-align: center;
         }
 
-        .login-form {
+        .get-flag-form {
             width: 300px;
             margin: 0 auto;
             background-color: #fff;
@@ -18,12 +18,11 @@
             border-radius: 5px;
         }
 
-        .login-form h2 {
+        .get-flag-form h2 {
             margin-top: 0;
         }
 
-        .login-form input[type="text"],
-        .login-form input[type="password"] {
+        .get-flag-form input[type="text"] {
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
@@ -32,7 +31,7 @@
             box-sizing: border-box;
         }
 
-        .login-form input[type="submit"] {
+        .get-flag-form input[type="submit"] {
             width: 100%;
             background-color: #4CAF50;
             color: #fff;
@@ -42,15 +41,44 @@
             cursor: pointer;
         }
 
-        .login-form input[type="submit"]:hover {
+        .get-flag-form input[type="submit"]:hover {
             background-color: #45a049;
+        }
+
+        .flag-result {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-<div class="login-form">
-    <h2>Get flag page</h2>
+    <div class="get-flag-form">
+        <h2>Get Flag</h2>
+        <form id="get-flag-form">
+            <input type="text" id="token" name="token" placeholder="Token" required>
+            <input type="submit" value="Get Flag">
+        </form>
+        <div class="flag-result" id="flag-result"></div>
+    </div>
 
-</div>
+    <script>
+        const form = document.getElementById('get-flag-form');
+        const flagResult = document.getElementById('flag-result');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const token = document.getElementById('token').value;
+            const response = await fetch('http://localhost:8080/getFlag', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ token })
+            });
+
+            const data = await response.json();
+            flagResult.textContent = data;
+        });
+    </script>
 </body>
 </html>
