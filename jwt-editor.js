@@ -40,7 +40,7 @@ if (!payload) {
       obj = obj[prop]
     }
     console.log(obj)
-    const answer = await getInput('Enter a key to change its value, or \'cd\' to navigate to a nested object, ' +
+    const answer = await getInput('Enter \'set\' to change a key\'s value, or \'cd\' to navigate to a nested object, ' +
       ',\'save\' to save and exit, or \'back\' to navigate out of a nested object:')
     // If the user enters 'save', encode the payload and print the new token
     if (answer === "save") {
