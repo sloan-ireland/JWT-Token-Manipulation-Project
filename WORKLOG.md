@@ -29,3 +29,10 @@ Researched JWT exploits.
 ### 05-22-23
 
 Created DigitalOcean Droplet. Spent quite a bit of time getting it configured to wanted specifications and setting up the ngiunx webserver. Created the HTML and php for the login pages to base off the exploit. PHP page is currently broken. 
+
+### 05-23-23 
+Made the first draft of getFlag.html which is the page displayed when the login form is completed. it pulls the flag from the server and stores it in the session token. the flag cannot be pulled via a gobuster attack. 
+
+### 05-24-23
+
+Worked on presentation.md to talk about different jwt vulnerabilities. Started writing a JS CLI tool that will allow a person to edit a token in a "cd" like fashion going into the different parts like the payload and signature. 
