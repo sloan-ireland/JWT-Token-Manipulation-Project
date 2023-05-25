@@ -2,7 +2,33 @@
 
 JSON Web Tokens (JWT) are a popular way of authenticating users and exchanging information between parties in web applications. However, JWT tokens are not immune to security risks and vulnerabilities. In this article, we will discuss two common types of attacks on JWT tokens: nonalgorithm and RSA vulnerabilities.
 
-## Nonalgorithm Attack
+## The JWT Format
+
+A JSON Web Token consists of three parts. The header, payload, and signature. Each of these components are separated by the ```.``` character, and are base64-url encoded. 
+
+Throughout this short explanation, we'll be using the token ```eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiamFjb2IiLCJlbWFpbCI6ImphY29iQHdlYnNpdGUuY29tIiwiaW5mbyI6eyJ1c2VySUQiOiI2YWI0ZGM4MjYzZGMzYmFhNzIifX0.uPsufJbQsVwg_gPiEQRy1w6Tkahk9yuywnU59eXBdQoqXYMh5AJfbad2u_UjG5_O```
+as an example
+
+### The Header
+
+A JWT Header consists of properties defining the mechanics of a given token, including the algorithm that the token is signed with. Sometimes, information regarding the key that a token can be verified with is stored here. In our token, we can see that the token is signed with an HMAC SHA-384 algorithm by decoding the first part.
+```eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9``` -> 
+```{"alg": "HS384","typ": "JWT"}```
+
+### The Payload
+
+This contains all of the information about the client that the server has authenticated, and therefore will believe to be true. Some priveleged information is also stored here by careless developers sometimes.
+```eyJ1c2VyIjoiamFjb2IiLCJlbWFpbCI6ImphY29iQHdlYnNpdGUuY29tIiwiaW5mbyI6eyJ1c2VySUQiOiI2YWI0ZGM4MjYzZGMzYmFhNzIifX0``` -> 
+```{"user":"jacob","email":"jacob@website.com","info":{"userID": "6ab4dc8263dc3baa72"}}```
+
+### The Signature
+
+A JWT Header consists of properties defining the mechanics of a given token, including the algorithm that the token is signed with. Sometimes, information regarding the key that a token can be verified with is stored here. In our token, we can see that the token is signed with an HMAC SHA-384 algorithm by decoding the first part. Some priveleged information is also stored here by careless developers sometimes.
+```eyJ1c2VyIjoiamFjb2IiLCJlbWFpbCI6ImphY29iQHdlYnNpdGUuY29tIiwiaW5mbyI6eyJ1c2VySUQiOiI2YWI0ZGM4MjYzZGMzYmFhNzIifX0``` -> 
+```{"user":"jacob","email":"jacob@website.com","info":{"userID": "6ab4dc8263dc3baa72"}}```
+
+
+## None algorithm Attack
 
 A nonalgorithm attack is a type of attack where the attacker modifies the header of a JWT token to change the algorithm field from a cryptographic algorithm (such as HS256 or RS256) to "none". This means that the token is not signed or verified by any secret key or public key. If the server does not validate the algorithm field and blindly accepts the token, the attacker can forge any payload and impersonate any user.
 
