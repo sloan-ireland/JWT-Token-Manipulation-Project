@@ -1,9 +1,3 @@
-// This is a simple CLI for editing a JWT token in JS
-// The token is provided as a command line argument
-// The program displays the current payload and prompts the user for what they want to change
-// The user can "cd" into different parts of the token and enter plain text for the new values
-// The token is decoded and encoded using the jsonwebtoken library
-
 const jwt = require("jsonwebtoken");
 const readline = require("readline");
 
@@ -29,59 +23,47 @@ if (!payload) {
   process.exit(1);
 }
 
-
-
 (async () => {
-// Define a function to prompt the user for changes
-  let path = []
+  let path = [];
   while (true) {
-    let obj = payload
-    for (const prop of path){
-      obj = obj[prop]
+    let obj = payload;
+    for (const prop of path) {
+      obj = obj[prop];
     }
-    console.log(obj)
-    const answer = await getInput('Enter \'set\' to change a key\'s value, or \'cd\' to navigate to a nested object, ' +
-      ',\'save\' to save and exit, or \'back\' to navigate out of a nested object:')
-    // If the user enters 'save', encode the payload and print the new token
+    console.log(obj);
+    const answer = await getInput(`
+Enter 'set' to change a key's value,
+      'cd' to navigate to a nested object,
+      'save' to save and exit,
+      'back' to navigate out of a nested object:
+`);
     if (answer === "save") {
       const newToken = jwt.sign(payload, "secret");
-      console.log(`New JWT token: ${newToken}`);
-      return
-    }
-    // If the user enters 'cd', ask them for the key of the nested object
-    else if (answer === "cd") {
-      const key = await getInput("Enter the key of the nested object: ")
-      // If the key exists and is an object, call the prompt function recursively with the new path and object
+      console.log(`\nNew JWT token: ${newToken}\n`);
+      return;
+    } else if (answer === "cd") {
+      const key = await getInput("Enter the key of the nested object: ");
       if (obj[key] && typeof obj[key] === "object") {
-        path.push(key)
-      }
-      // Otherwise, print an error message and repeat the prompt
-      else {
+        path.push(key);
+      } else {
         console.error("Invalid key or not an object.");
       }
-    }
-    // If the user enters a valid key, ask them for the new value
-    else if (answer==='set'){
-      const key = await getInput('Enter the key to set: ')
+    } else if (answer === "set") {
+      const key = await getInput("Enter the key to set: ");
       if (obj.hasOwnProperty(key)) {
-        const value = await getInput("Enter the new value: ")
-        // Try to parse the value as JSON, or use it as a string
+        const value = await getInput("Enter the new value: ");
         try {
           obj[key] = JSON.parse(value);
         } catch (err) {
           obj[key] = value;
         }
-      }else {
+      } else {
         console.error("Invalid key.");
       }
-    }
-     else if (answer === 'back') {
-      path.pop()
-    }
-    // Otherwise, print an error message and repeat the prompt
-    else {
+    } else if (answer === "back") {
+      path.pop();
+    } else {
       console.error("Invalid syntax.");
     }
   }
-})()
-
+})();
