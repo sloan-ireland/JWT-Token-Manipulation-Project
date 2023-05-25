@@ -67,7 +67,7 @@
             e.preventDefault();
 
             const token = sessionStorage.getItem('token');
-            const response = await fetch('http://localhost:8080/getFlag', {
+            const response = await fetch('http://159.65.40.248:8080/getFlag', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
