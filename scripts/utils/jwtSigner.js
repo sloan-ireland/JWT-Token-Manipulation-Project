@@ -19,7 +19,7 @@ function jwtSigner(headers,payload,key,signature,alg) {
   }
 
   if (alg==='none'||alg==='None'){
-    return msg
+    return msg+'.'
   }
 
   if (alg.slice(0,2)==='HS') {

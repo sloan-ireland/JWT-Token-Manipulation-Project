@@ -23,16 +23,22 @@ app.post('/login', async (req, res) => {
 
 app.post('/getFlag', async (req, res) => {
   try {
-    const verified = jwt.verify(req.body.token, 'readthisfromfilelater', {
-      algorithms: ['HS256', 'HS384', 'HS512', 'RS256', 'RS384', 'none']
-    })
+    console.log(req.body.token)
+    console.log(jwt.decode(req.body.token))
+    let key = null
+    try {
+      key = JSON.parse(fs.readFileSync('./secret').toString());
+    }catch {}
+    const verified = jwt.verify(req.body.token, key)
     if (verified.username === 'jimmy') {
-      res.json('flag1: ' + fs.readFileSync('../flags/flag1'))
+      console.log('verified jimmy')
+      res.json('flag1: ' + fs.readFileSync('./flag1'))
     }
     if (verified.username === 'administrator') {
-      res.json('flag2: ' + fs.readFileSync('../flags/flag2'))
+      res.json('flag2: ' + fs.readFileSync('./flag2'))
     }
-  } catch {
+  } catch (e){
+    console.log(e)
   }
 })
 
