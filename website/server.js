@@ -18,6 +18,7 @@ app.post('/login', async (req, res) => {
       res.json(jwt.sign({username: req.body.username}, 'readthisfromfilelater'))
     }
   } catch {
+    res.json('error')
   }
 })
 
