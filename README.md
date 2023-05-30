@@ -15,10 +15,17 @@ The project focuses on two specific vulnerabilities in JWT tokens: nonalgorithm 
 To run and experiment with this project, follow these steps:
 
 1. Clone the project repository from GitHub: https://github.com/Stuycs-K/final-project-4-irelands-kirmayerj.git
-2. Install the necessary dependencies by running the following command:
-5. Open a web browser and navigate to http://159.65.40.248/ to access the website.
-6. Use the provided login form to enter the correct username and password for authentication.
-7. Explore the functionality of the web application and observe the vulnerabilities associated with JWT token manipulation.
+2. Install the necessary dependencies by running the following command: 
+```
+npm install
+```
+ - This command will use npm (Node Package Manager) to install the dependencies specified in the package.json file.
+
+
+3. Open a web browser and navigate to http://159.65.40.248/ to access the website.
+4. Use the provided login form to enter the correct username (jimmy) and password (jimmy) for authentication.
+5. Explore the functionality of the web application and observe the vulnerabilities associated with JWT token manipulation (Read more under PRESENTATION.md for specifics on how to do this)
+6. Attempt to CTF in the task presented in HOMEWORK.md
 
 ## Disclaimer
 
