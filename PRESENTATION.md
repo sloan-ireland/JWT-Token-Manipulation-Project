@@ -47,10 +47,14 @@ When working with JWT tokens, it can be useful to inspect and analyze the tokens
 
 Most modern web browsers come with built-in developer tools that allow you to inspect network requests and view the details of HTTP headers. Follow these steps to locate JWT tokens using browser developer tools:
 
-1. Open the web application in your browser.
-2. Right-click anywhere on the page and select "Inspect" or "Inspect Element" from the context menu. This will open the browser's developer tools.
-3. Navigate to the "Network" or "Network Monitor" tab in the developer tools.
-4. Perform the desired actions in the web application that involve JWT tokens, such as logging in or making authenticated requests.
-Look for requests that include an "Authorization" header. JWT tokens are commonly transmitted as bearer tokens in the "Authorization" header. The token will be prefixed with the word "Bearer" followed by a space.
-5. In the "Name" or "Path" column of the network requests, look for endpoints or URLs that indicate authentication or protected resources. For example, endpoints like "/login," "/user," or "/api" may be relevant.
-6. Click on the request that contains the JWT token to view its details. The "Headers" section should display the "Authorization" header and the JWT token.
+1. Open the target website in a web browser.
+
+2. Access the developer tools of the browser. Usually, you can do this by right-clicking on the webpage and selecting "Inspect" or "Inspect Element".
+
+3. In the developer tools, locate the "Application" or "Storage" tab. Click on it to view the storage options.
+
+4. Within the storage options, find and click on "Session Storage". This will display the data stored in the session storage for the current website.
+
+5. Look for a key that is related to JWT tokens. This key might have a name like "jwtToken", "accessToken", or similar. Note that the exact key name may vary depending on how the website implements its session storage.
+
+They key will look like random gibberish but can be decoded and edited with the CLI tool in the repo (jwt-editor.js). Make sure you have the proper dependencies installed. 
