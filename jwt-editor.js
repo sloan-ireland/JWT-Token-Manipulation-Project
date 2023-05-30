@@ -3,6 +3,7 @@ const readline = require("readline");
 const jwtRead = require('./jwtReader.js')
 
 const jwtSign = require('./jwtSigner.js')
+const fs = require("fs");
 
 async function getInput(prompt) {
   const rl = readline.createInterface(process.stdin, process.stdout);
@@ -17,17 +18,7 @@ async function getInput(prompt) {
   const token = await getInput('Enter JWT token here: ');
   let decoded = jwtRead(token)
   const payload = decoded.payload;
-  const isRSA = decoded.headers.alg.slice(0,2)==='RS';
-  const potentialKnownKey = await getInput('If you know the JWT signing key, enter it now. If not,' +
-    'type anything to continue: ');
-  let keyKnown = false;
-  try {
-    jwt.verify(token,potentialKnownKey)
-    keyKnown = true
-    console.log('This key has been verified, and used to sign the token.')
-  } catch {
-    console.log('This key was not used to sign this token. Using attack mode instead.')
-  }
+  const isRSA = decoded.headers.alg.slice(0, 2) === 'RS'
   let path = [];
   while (true) {
     let obj = payload;
@@ -42,10 +33,30 @@ Enter 'set' to change a key's value,
       'back' to navigate out of a nested object:
 `);
     if (answer === "save") {
+
+      const signingKey = fs.readFileSync('./sign.key')
+      const verificationKey = fs.readFileSync('./verify.key')
+
+      // Ask for RSA public key
+      console.log('Token signed with the signing key given: ');
+      const withKey = jwtSign(decoded.headers, payload, signingKey, null, decoded.headers.alg);
+      console.log(withKey)
+      if (isRSA) {
+        decoded.headers.alg = `HS${decoded.headers.alg.slice(2)}`
+        console.log('RSA token signed with HMAC and verification key: ');
+        const rsaToken = jwtSign(decoded.headers, payload, verificationKey, null, decoded.headers.alg);
+        console.log(rsaToken)
+      }
+
       decoded.headers.alg = 'none'
-      const newToken = jwtSign(decoded.headers,payload, null,null,'none');
-      console.log('None-signed token: ');
-      console.log(newToken)
+      const noneToken = jwtSign(decoded.headers, payload, null, null, 'none');
+      decoded.headers.alg = 'None'
+      const noneToken2 = jwtSign(decoded.headers, payload, null, null, 'none');
+
+      console.log('None-signed tokens: ');
+      console.log(noneToken)
+      console.log(noneToken2)
+
       return;
     } else if (answer === "cd") {
       const key = await getInput("Enter the key of the nested object: ");

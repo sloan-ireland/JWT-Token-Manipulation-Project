@@ -10,8 +10,9 @@ function keygen() {
   }
 }
 
-writeFileSync('../private.pem',keygen().private)
-writeFileSync('../public.pem',keygen().public)
+const kg = keygen()
+writeFileSync('../private.pem',kg.private)
+writeFileSync('../public.pem',kg.public)
 
 module.exports = keygen
 

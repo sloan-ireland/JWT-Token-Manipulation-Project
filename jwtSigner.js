@@ -23,7 +23,6 @@ function jwtSigner(headers,payload,key,signature,alg) {
   }
 
   if (alg.slice(0,2)==='HS') {
-    console.log(alg.slice(2));
     const dig = crypto.createHmac(`sha${alg.slice(2)}`, key)
       .update(msg)
       .digest('base64url')
