@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
 const readline = require("readline");
-const jwtRead = require('./scripts/utils/jwtReader.js')
+const jwtRead = require('./jwtReader.js')
 
-const jwtSign = require('./scripts/utils/jwtSigner.js')
+const jwtSign = require('./jwtSigner.js')
 
 async function getInput(prompt) {
   const rl = readline.createInterface(process.stdin, process.stdout);
