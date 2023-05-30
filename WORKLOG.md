@@ -23,7 +23,8 @@ Began work on presentation.
 
 ### 05-26-23
 Absent
-
+### 05-27-23
+Reconfigured jwt-editor for efficiency, and added functionality for navigating out of nested options.
 ### 05-29-23
 Fixed server.js and code for the internet-facing flags so page works for appropriate logins. Validated that token manipulation works. 
 ## Sloan Ireland
