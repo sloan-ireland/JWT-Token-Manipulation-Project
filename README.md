@@ -49,7 +49,6 @@ This project is licensed under the **ThisIsMine** Policy - see the [LICENSE](htt
 ## Resources
 
 - [JSON Web Tokens (JWT) Introduction](https://jwt.io/introduction/)
-- [OWASP JSON Web Token Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_Cheat_Sheet.html)
 - [Node.js Documentation](https://nodejs.org/)
 - [Express.js Documentation](https://expressjs.com/)
 
