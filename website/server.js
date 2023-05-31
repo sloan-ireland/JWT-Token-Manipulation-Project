@@ -13,12 +13,17 @@ app.use(bodyParser.json({limit: '10mb', extended: true}));
 app.post('/login', async (req, res) => {
   try {
     console.log(req.body)
-    if (req.body.password === 'jimmy') {
-      console.log(jwt.sign({username: req.body.username}, 'readthisfromfilelater'))
-      res.json(jwt.sign({username: req.body.username}, 'readthisfromfilelater'))
+    const key = fs.readFileSync('./secret')
+    if (req.body.password === 'jimmy'&&req.body.username==='jimmy') {
+      // console.log(jwt.sign({username: req.body.username}, key))
+      res.json(jwt.sign({username: req.body.username}, key))
+    } else if (req.body.username==='Marc'&&req.body.password==='jiang'){
+      res.send('flag{sp3ci@1_m@rc_fl@g}')
+    } else{
+      res.json({error:true})
     }
   } catch {
-    res.json('error')
+    res.json({error:true})
   }
 })
 
@@ -27,14 +32,16 @@ app.post('/getFlag', async (req, res) => {
     let key = false
     try {
       key = JSON.parse(fs.readFileSync('./secret').toString());
-    }catch (e){console.log(e)}
+    }catch {}
     let verified;
     try {
+      console.log(key)
       verified = jwt.verify(req.body.token, key)
     } catch {}
     try {
-      verified = jwt.verify(req.body.token, 'readthisfromfilelater')
+      verified = jwt.verify(req.body.token, fs.readFileSync('./secret'))
     } catch {}
+    console.log(verified)
     if (verified.username === 'jimmy') {
       console.log('verified jimmy')
       res.json('flag1: ' + fs.readFileSync('./flag1'))
