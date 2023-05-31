@@ -15,19 +15,22 @@ The project focuses on two specific vulnerabilities in JWT tokens: nonalgorithm 
 To run and experiment with this project, follow these steps:
 
 1. Clone the project repository from GitHub: https://github.com/Stuycs-K/final-project-4-irelands-kirmayerj.git
-2. Run these commands to install node
+2. Run the following commands to install node
 
-```curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash```
-```source ~/.bashrc```
-```nvm install 16.15.0```
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 
+source ~/.bashrc
+
+nvm install 16.15.0
+```
 
 
 3. Install the necessary dependencies by running the following command: 
 ```
 npm install
 ```
- - This command will use npm (Node Package Manager) to install the dependencies specified in the package.json file.
+ - This command will use npm (Node Package Manager) to install the dependencies specified in the package.json file. IMPORTANT: Becuase of the repo configuration this will install a vulnerable version of 
 
 
 4. Open a web browser and navigate to http://159.65.40.248/ to access the website.
@@ -41,7 +44,7 @@ This project is purely for educational and demonstration purposes. It should not
 
 ## Copyright
 
-© 2023 Sloan Ireland and Jason Kirmayer
+© 2023 Sloan Ireland and Jacob Kirmayer
 
 This project is licensed under the **ThisIsMine** Policy - see the [LICENSE](https://www.bing.com/ck/a?!&&p=3b44a9a64d0e13aeJmltdHM9MTY4NTMxODQwMCZpZ3VpZD0xMmRhYzlkOC1mYzgzLTY0Y2YtMjMzNi1kYjRmZmQ5MTY1ZDYmaW5zaWQ9NTIxMA&ptn=3&hsh=3&fclid=12dac9d8-fc83-64cf-2336-db4ffd9165d6&psq=rickroll&u=a1aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g_dj1kUXc0dzlXZ1hjUQ&ntb=1) file for details.
 

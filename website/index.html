@@ -68,7 +68,12 @@
               password: document.getElementById('password').value
             })
           });
+            
           const responseStr = await response.json()
+          if (responseStr.error){
+            alert('incorrect login info')
+            return
+          }
           sessionStorage.setItem('token', responseStr.toString())
           window.location = '/getFlag.html'
         })
