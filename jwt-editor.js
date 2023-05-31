@@ -15,6 +15,12 @@ async function getInput(prompt) {
 
 
 (async () => {
+  console.log('Make sure to input any signing/verification keys you may have' +
+    'into the \"sign.key\" and \"verify.key\" files. If ' +
+    'you do not have the signing key, the forge is not guaranteed to be successful.' +
+    'If you do not have the verification key, the RSA vulnerability will not be exploited accurately.' +
+    'The none algorithm tokens will be accurately forged regardless of the above conditions, even' +
+    'if the site that you are attacking does not verify them.')
   const token = await getInput('Enter JWT token here: ');
   let decoded = jwtRead(token)
   const payload = decoded.payload;
