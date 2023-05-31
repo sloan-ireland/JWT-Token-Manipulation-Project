@@ -27,6 +27,8 @@ Absent
 Reconfigured jwt-editor for efficiency, and added functionality for navigating out of nested options.
 ### 05-29-23
 Fixed server.js and code for the internet-facing flags so page works for appropriate logins. Validated that token manipulation works. 
+### 05-30-23
+Documented node install instructions for lab machines, and put final touches on the forger CLI.
 ## Sloan Ireland
 
 ### 05-17-23 and 05-18/19-23 (Was absent for AP Exam and Personal reason)
