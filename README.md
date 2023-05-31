@@ -30,7 +30,7 @@ nvm install 16.15.0
 ```
 npm install
 ```
- - This command will use npm (Node Package Manager) to install the dependencies specified in the package.json file. IMPORTANT: Becuase of the repo configuration this will install a vulnerable version of 
+ - This command will use npm (Node Package Manager) to install the dependencies specified in the package.json file.
 
 
 4. Open a web browser and navigate to http://159.65.40.248/ to access the website.
