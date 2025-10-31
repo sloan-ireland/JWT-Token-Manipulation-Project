@@ -5,7 +5,7 @@
 The purpose of this project is to demonstrate and explore the manipulation of JSON Web Tokens (JWT) on a website. JWT tokens are a popular method for authentication and exchanging information between parties in web applications. This project aims to showcase the vulnerabilities and security risks associated with JWT tokens and how they can be manipulated.
 
 ## Project Description
-
+### The actual application is not LIVE right now. 
 The project consists of a web application hosted on the website http://159.65.40.248/. The application allows users to log in using a username and password. Upon successful login, a JWT token is generated and stored in the user's session. The token is used for subsequent requests to the server to access protected resources.
 
 The project focuses on two specific vulnerabilities in JWT tokens: nonalgorithm attack and RSA vulnerability. The nonalgorithm attack involves modifying the token's algorithm field to "none," allowing unauthorized access and impersonation. The RSA vulnerability exploits the improper verification of symmetric and asymmetric signatures in the token.
